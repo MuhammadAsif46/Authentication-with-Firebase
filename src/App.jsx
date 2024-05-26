@@ -1,12 +1,16 @@
-
-
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 function App() {
 
   return (
     <>
-      <h1 className="text-3xl p-4 bg-purple-500 text-white">Authentication with Firebase</h1>
+    <Routes>
+      <Route path="/" element={<LoginPage/>}/>
+      <Route path="/signup" element={<SignupPage/>}/>
+      <Route path="/profile" element={<ProfilePage/>}/>
+      <Route path="/update-password" element={<UpdatePasswordPage/>}/>
+    </Routes>
     </>
   );
 }
