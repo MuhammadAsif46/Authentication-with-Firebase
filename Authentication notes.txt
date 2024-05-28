@@ -1,0 +1,77 @@
+Firebase Basic Authentication Methods:
+
+1.Signup Method:
+
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth();
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
+
+2. Sign in Method:
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth();
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+
+3. logout Method:
+
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+
+4. Update profile Method (only Name or photoUrl):
+
+import { getAuth, updateProfile } from "firebase/auth";
+const auth = getAuth();
+updateProfile(auth.currentUser, {
+  displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+}).then(() => {
+  // Profile updated!
+  // ...
+}).catch((error) => {
+  // An error occurred
+  // ...
+});
+
+5. Update password Method:
+
+import { getAuth, updatePassword } from "firebase/auth";
+
+const auth = getAuth();
+
+const user = auth.currentUser;
+const newPassword = getASecureRandomPassword();
+
+updatePassword(user, newPassword).then(() => {
+  // Update successful.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});
