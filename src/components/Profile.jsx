@@ -16,19 +16,19 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="min-h-min w-1/2 mx-auto shadow-md flex justify-between text-right py-3 px-3 mt-2 rounded-md">
+      <div className="min-h-min w-1/2 mx-auto shadow-md flex items-center justify-between text-right py-3 px-3 mt-2 rounded-md">
         <div>
           <p className="text-xl">Welcome, {auth.currentUser.displayName}</p>
         </div>
         <div className="flex gap-3">
           <button
-            className="bg-red-400 text-white p-1 rounded-md"
+            className="bg-red-400 text-white p-2 rounded-md"
             onClick={handleLogout}
           >
             Logout
           </button>
           <button
-            className="bg-slate-600 text-white p-1 rounded-md"
+            className="bg-slate-600 text-white p-2 rounded-md"
             onClick={() => navigate("/update-password")}
           >
             Update Password
