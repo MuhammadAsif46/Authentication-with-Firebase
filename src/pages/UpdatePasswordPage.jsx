@@ -1,9 +1,8 @@
 import React from 'react'
+import UpdatePassword from '../components/UpdatePassword'
 
 const UpdatePasswordPage = () => {
-  return (
-    <div>UpdatePasswordPage</div>
-  )
+  return <UpdatePassword/>
 }
 
 export default UpdatePasswordPage

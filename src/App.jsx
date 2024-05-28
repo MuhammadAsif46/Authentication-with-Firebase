@@ -38,7 +38,7 @@ function App() {
           path="/profile"
           element={user ? <ProfilePage /> : <Navigate to="/" />}
         />
-        <Route path="/update-password" element={<UpdatePasswordPage />} />
+        <Route path="/update-password" element={user ? <UpdatePasswordPage /> : <Navigate to="/" />} />
       </Routes>
     </>
   );
