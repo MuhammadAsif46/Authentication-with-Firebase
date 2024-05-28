@@ -5,7 +5,7 @@ import {auth,createUserWithEmailAndPassword} from "../firebase/firebaseConfig"
 // import { v4 as uuidv4 } from "uuid";
 
 const Signup = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -20,6 +20,7 @@ const Signup = () => {
       console.log(response.user);     
     } catch (error) {
       console.log(error.message);     
+      console.log(error.code);     
     }
 
   };

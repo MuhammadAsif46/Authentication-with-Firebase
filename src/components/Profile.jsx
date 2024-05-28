@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import image from "../assets/image-1.jpg"
+import {auth, signOut} from "../firebase/firebaseConfig"
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -15,12 +16,12 @@ const Profile = () => {
   // }, [])
 
   const handleLogout = async () => {
-    // try {
-    //     await account.deleteSession("current")
-    //     navigate("/")
-    // } catch (error) {
-    //     console.log(error);
-    // }
+    try {
+        await signOut(auth)
+        navigate("/")
+    } catch (error) {
+        console.log(error);
+    }
   };
 
   return (
