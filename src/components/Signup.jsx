@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {auth,createUserWithEmailAndPassword} from "../firebase/firebaseConfig"
 // import { account } from "../appwrite/appwriteConfig";
 // import { v4 as uuidv4 } from "uuid";
 
 const Signup = () => {
   // const navigate = useNavigate();
   const [user, setUser] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -15,22 +15,12 @@ const Signup = () => {
   const signupUser = async (e) => {
     e.preventDefault()
 
-    // const promise = account.create(
-    //   uuidv4(),
-    //   user.email,
-    //   user.password,
-    //   user.name
-    // )
-
-  //   promise.then(
-  //     function(response){
-  //         console.log(response);
-  //         navigate("/profile") //success
-  //     },
-  //     function(error) {
-  //         console.log(error); // Failure
-  //     }
-  // )
+    try {
+      const response = await createUserWithEmailAndPassword(auth, user.email, user.password)
+      console.log(response.user);     
+    } catch (error) {
+      console.log(error.message);     
+    }
 
   };
 
@@ -41,7 +31,7 @@ const Signup = () => {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" action="#" method="POST">
-              <div>
+              {/* <div>
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700"
@@ -64,7 +54,7 @@ const Signup = () => {
                     }}
                   />
                 </div>
-              </div>
+              </div> */}
               <div>
                 <label
                   htmlFor="email"

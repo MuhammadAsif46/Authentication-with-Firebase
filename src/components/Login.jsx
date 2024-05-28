@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import {auth,signInWithEmailAndPassword} from "../firebase/firebaseConfig"
 // import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [errorMessage,setErrorMessage] = useState("")
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -12,13 +14,16 @@ const Login = () => {
   // Login
 
   const loginUser = async (e) => {
-    e.preventDefault();
-    // try {
-    //   await account.createEmailPasswordSession(user.email, user.password);
-    //   navigate("/profile");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    e.preventDefault()
+
+    try {
+      const response = await signInWithEmailAndPassword(auth, user.email, user.password)
+      console.log(response.user);
+      navigate("/profile")
+    } catch (error) {
+      // console.log(error.code); 
+      setErrorMessage(error.code)    
+    }
   };
 
   return (
@@ -27,6 +32,7 @@ const Login = () => {
         <div className="text-center font-bold text-2xl">Log in</div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
+          {errorMessage && <div className="text-red-500 text-center mb-5 cursor-pointer">{errorMessage}</div> }
             <form className="space-y-6" action="#" method="POST">
               <div>
                 <label
