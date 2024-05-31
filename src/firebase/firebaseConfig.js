@@ -30,5 +30,5 @@ export {
   onAuthStateChanged, // user is authenticated
   updateProfile, //profile update
   updatePassword, // password update
-  signInWithPopup,
+  signInWithPopup, // sign in popup with social networks 
 }
