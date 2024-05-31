@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth,signInWithPopup,GoogleAuthProvider , createUserWithEmailAndPassword,updatePassword , signInWithEmailAndPassword,signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getAuth,signInWithPopup,GithubAuthProvider ,GoogleAuthProvider , createUserWithEmailAndPassword,updatePassword , signInWithEmailAndPassword,signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAg9-hPna4Ps2Pk8_5waAZn9HIWQqzWQ_A",
@@ -21,6 +21,7 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 
 export const provider = new GoogleAuthProvider();
+export const providerGithub = new GithubAuthProvider();
 
 export {
   createUserWithEmailAndPassword, //sign up 

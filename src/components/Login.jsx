@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   provider,
   signInWithPopup,
+  providerGithub,
 } from "../firebase/firebaseConfig";
 // import { useNavigate } from "react-router-dom";
 
@@ -35,6 +36,7 @@ const Login = () => {
     }
   };
 
+  // login with Google account
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -52,6 +54,23 @@ const Login = () => {
       const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log("error-->", error);
+    }
+  };
+
+  // Login with GitHub account
+  const loginWithGithub = async () => {
+    try {
+      const resultGithub = await signInWithPopup(auth, providerGithub);
+      const credential = GithubAuthProvider.credentialFromResult(resultGithub);
+      const token = credential.accessToken;
+      const user = resultGithub.user;
+      console.log("user-->", user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GithubAuthProvider.credentialFromError(error);
       console.log("error-->", error);
     }
   };
@@ -200,8 +219,8 @@ const Login = () => {
                 </div>
 
                 <div>
-                  <Link
-                    href="/"
+                  <span
+                    onClick={loginWithGithub}
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with GitHub</span>
@@ -217,7 +236,7 @@ const Login = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </Link>
+                  </span>
                 </div>
               </div>
             </div>
