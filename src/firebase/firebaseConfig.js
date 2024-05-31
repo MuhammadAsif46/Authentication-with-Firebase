@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword,updatePassword , signInWithEmailAndPassword,signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getAuth,signInWithPopup,GoogleAuthProvider , createUserWithEmailAndPassword,updatePassword , signInWithEmailAndPassword,signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAg9-hPna4Ps2Pk8_5waAZn9HIWQqzWQ_A",
@@ -20,6 +20,8 @@ export const db = getFirestore(app);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 
+export const provider = new GoogleAuthProvider();
+
 export {
   createUserWithEmailAndPassword, //sign up 
   signInWithEmailAndPassword, // sign in
@@ -27,4 +29,5 @@ export {
   onAuthStateChanged, // user is authenticated
   updateProfile, //profile update
   updatePassword, // password update
+  signInWithPopup,
 }
